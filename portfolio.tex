@@ -1,0 +1,235 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%   End of Harvard style referencing setup %%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% University Assignment Title Page 
+% LaTeX Template
+% Version 1.0 (27/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% WikiBooks (http://en.wikibooks.org/wiki/LaTeX/Title_Creation)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+% 
+% Instructions for using this template:
+% This title page is capable of being compiled as is. This is not useful for 
+% including it in another document. To do this, you have two options: 
+%
+% 1) Copy/paste everything between \begin{document} and \end{document} 
+% starting at \begin{titlepage} and paste this into another LaTeX file where you 
+% want your title page.
+% OR
+% 2) Remove everything outside the \begin{titlepage} and \end{titlepage} and 
+% move this file to the same directory as the LaTeX file you wish to add it to. 
+% Then add \input{./title_page_1.tex} to your LaTeX file where you want your
+% title page.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title{Title page with logo}
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[12pt]{article}
+\usepackage[british]{babel}
+\usepackage{csquotes}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[toc]{appendix}
+\usepackage{titling}
+
+% Harvard style setup from http://tex.stackexchange.com/questions/134258/harvard-style-bibliography-with-biblatex-almost-but-not-quite
+\usepackage[
+firstinits=true, % render first and middle names as initials
+useprefix=true,
+maxcitenames=3,
+maxbibnames=99,
+style=authoryear,
+dashed=false, % re-print recurring author names in bibliography
+backend=bibtex,
+]{biblatex}
+
+\renewcommand*{\bibinitdelim}{}
+
+\usepackage{xpatch}
+\xapptobibmacro{date+extrayear}{\nopunct}{}{}
+
+% Use single quotes around titles:
+
+\DeclareNameAlias{author}{last-first}
+\renewcommand*{\mkbibnamefirst}[1]{{\let~\,#1}} % insert thin spaces between author initials
+\renewcommand*{\nameyeardelim}{\addcomma\addspace} % insert a comma between author and year in-text citations
+\renewcommand*{\newunitpunct}{\addcomma\addspace} % comma as separator in bibliography, not full stop
+\setlength\bibitemsep{1.5\itemsep} % increase spacing between entries in bibliography
+\renewbibmacro{in:}{} % remove 'in:' preceding article title
+
+% Place volume number within parentheses:
+\renewbibmacro*{volume+number+eid}{
+    \printfield{volume}
+    \setunit*{\addnbspace}% NEW (optional); there's also \addnbthinspace
+    \printfield{number}
+    \setunit{\addcomma\space}
+    \printfield{eid}}
+\DeclareFieldFormat[article]{number}{\mkbibparens{#1}}
+
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width=9cm,keepaspectratio]{abertay_logo.jpeg}\\[2cm] % Include a department/university logo - this will require the graphicx package
+
+\textsc{\Large Honours Project Proposal}\\[0.5cm] % Major heading such as course name
+\textsc{\large CMP401}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries An evaluation of the Visibility Buffer rendering technique in
+real-time graphics applications.}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+Alberto \textsc{Taiuti} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Dr. Paul \textsc{Robertson} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[2cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[2cm] % Date, change the \today to a set date if you want to be precise
+
+
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+
+%\addbibresource{RW_6648_1300250-RefList.bib}
+%\addbibresource{bibliography.bib}
+%\addbibresource{prof_proj_3rd_year.bib}
+
+% Table of contents page
+%\pagenumbering{arabic}
+%\tableofcontents
+%\newpage
+
+\begin{abstract}
+Over the past couple of years
+\end{abstract}
+
+\section{Introduction}
+Computer graphics is a field which is constantly in evolution. New technologies
+and techniques are developed every day and there is a constant push for
+innovation both in terms of performance and of visual quality.
+Over the last decade Deferred Rendering has become one of the primary choices of
+rendering technique for game developers due to its advantages over Forward
+Rendering and there have been other major publications showcasing novel
+techniques which propose to improve over one or more aspects of Deferred or
+Forward Rendering, with one example of these being Forward+ rendering.\\
+
+As this area of research is extremely active, new techniques are
+published every year. However, one specific area of improvement being
+researched is how to reduce
+the memory footprint of the rendering framework used by an application so
+that more GPU
+memory is available for other purposes, such as storing textures or general
+usage buffers.
+This is especially relevant when put in the context of the games industry's
+push to
+achieve real-time 4K high-resolution rendering in computer games, where
+because of the high pixel density of the images being rendered, a large amount
+of the memory available on GPUs is used for storing the images used by
+the rendering engine, leaving less space left for the texture maps used by the
+3D models which also need to be of higher resolution to avoid aliasing with the
+higher resolution render targets.
+More so, with the advent of Virtual Reality headsets and their high rate of
+adoption by customers, it becomes even more important to explore how to
+reduce the memory footprint of the available rendering techniques given that
+to render a 3D VR environment, the whole scene needs to be rendered twice and
+the
+results of the rendering stored in memory for both the left and right eye,
+basically doubling the amount of memory required by the renderer.\\
+
+A solution to this problem is to simply increase the memory available on the
+GPU, which some hardware vendors have implemented. However this approach
+requires the end users to buy a new GPU and reduces the reachable audience
+if your game or 3D application requires such hardware.\\
+
+Another solution is to develop and 
+assess new software approaches which allow to improve the memory efficiency of
+3D renderers with the currently available hardware. On this side,
+there has recently been an example of such technique being brought forward,
+named in various ways by different authors but more generally referred to as
+\emph{The Visibility Buffer}.\\
+The Visibility Buffer rendering technique proposes to reduce the number of
+intermediary image buffers required to render a scene at the expense of more
+complex real-time calculations on the GPU, thus reducing the overall memory
+footprint of the renderer implementation.
+However, on its own this is not appealing due to the more complex work
+done by the shaders which makes it potentially too slow for real-time
+applications and hence research is going towards mixing the basic
+Visibility Buffer with other methods in order to improve its real-time 
+rendering speed.
+This technique is very novel and is yet to be fully explored, which
+makes it a good candidate for an in-depth research on its feasibility as a
+real-time rendering method when compared to consolidated ones such as
+Forward, Forward+ and Deferred Rendering and whether its advantages in memory
+footprint are met by a decent rendering speed performance.\\
+
+Hence the research question for this project is:
+\setlenght{\parindent}{3em}
+\emph{How Visibility Buffer technique compare to current real-time
+rendering techniques and what techniques exist to improve its real-time
+rendering performance?}
+
+
+
+many of them set to improve the currently
+available ones, whereas only a few actually propose a new way of achieving
+real-time 3D rendering using the present software and hardware.
+
+
+\end{document}
